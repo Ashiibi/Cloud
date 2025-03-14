@@ -124,3 +124,12 @@ Report Summary
 └────────────────────────────┴────────┴─────────────────┘
 Legend:
 ```
+3. Petit benchmark secu
+Il existe plusieurs référentiels pour sécuriser une machine donnée qui utilise un OS donné. Un savoir particulièrement recherché pour renforcer la sécurité des serveurs surtout.
+Un des référentiels réputé et disponible en libre accès, ce sont les benchmarks de CIS. Ce sont ni plus ni moins que des guides complets pour sécuriser de façon assez forte une machine qui tourne par exemple sous Debian, Rocky Linux ou bien d'autres.
+Docker développe un petit outil qui permet de vérifier si votre utilisation de Docker est compatible avec les recommandations de CIS.
+🌞 Utilisez l'outil Docker Bench for Security
+
+rien à me mettre en rendu, je vous laisse exprimer votre curiosité quant aux résultats
+ce genre d'outils est cool d'un point de vue pédagogique : chaque check que fait le script c'est un truc à savoir finalement !
+Holy moly, ça fait pas mal de Warn en tout cas [I'm in Danger] 
