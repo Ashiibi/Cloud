@@ -71,6 +71,27 @@ mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-### B. OpenNebula
+# B. OpenNebula
 ## 🌞 Ajouter les dépôts Open Nebula
+```
+[root@frontend yum.repos.d]# dnf makecache -y
+MySQL 8.0 Community Server                                                               17 kB/s | 2.6 kB     00:00
+MySQL Connectors Community                                                               24 kB/s | 2.6 kB     00:00
+MySQL Tools Community                                                                    28 kB/s | 2.6 kB     00:00
+OpenNebula Community Edition                                                            2.3 kB/s | 833  B     00:00
+OpenNebula Community Edition                                                             18 kB/s | 3.1 kB     00:00
+Importing GPG key 0x906DC27C:
+...
+```
+## 🌞 Configuration OpenNebula
+```
+DB = [ BACKEND = "mysql",
+       SERVER  = "localhost",
+       PORT    = 0,
+       USER    = "oneadmin",
+       PASSWD  = "O_O",
+       DB_NAME = "opennebula",
+       CONNECTIONS = 25,
+       COMPARE_BINARY = "no" ]
 
+```
