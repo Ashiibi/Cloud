@@ -22,7 +22,7 @@ rtt min/avg/max/mdev = 0.308/0.442/0.644/0.145 ms
 
 kvm1.one ping statistics
 ```
-
+# I - Frontend
 ## 🌞 Installer un serveur MySQL
 ```
 [root@frontend ~]# rpm -i mysql80-community-release-el9-5.noarch.rpm
@@ -79,7 +79,7 @@ MySQL 8.0 Community Server                                                      
 MySQL Connectors Community                                                               24 kB/s | 2.6 kB     00:00
 MySQL Tools Community                                                                    28 kB/s | 2.6 kB     00:00
 OpenNebula Community Edition                                                            2.3 kB/s | 833  B     00:00
-OpenNebula Community Edition                                                             18 kB/s | 3.1 kB     00:00
+OpenNebu##la Community Edition                                                             18 kB/s | 3.1 kB     00:00
 Importing GPG key 0x906DC27C:
 ...
 ```
@@ -95,3 +95,61 @@ DB = [ BACKEND = "mysql",
        COMPARE_BINARY = "no" ]
 
 ```
+
+## 🌞 Créer un user pour se log sur la WebUI OpenNebula
+```
+sudo su - oneadmin
+vi /var/lib/one/.one/one_auth
+user:password
+```
+
+## 🌞 Démarrer les services OpenNebula
+```
+[root@frontend ~]# sudo systemctl start opennebula
+[root@frontend ~]# sudo systemctl enable opennebula
+Created symlink /etc/systemd/system/multi-user.target.wants/opennebula.service → /usr/lib/systemd/system/opennebula.service.
+[root@frontend ~]# sudo systemctl enable opennebula-sunstone
+Created symlink /etc/systemd/system/multi-user.target.wants/opennebula-sunstone.service → /usr/lib/systemd/system/opennebula-sunstone.service.
+[root@frontend ~]# sudo systemctl start opennebula-sunstone
+```
+
+# C. Conf système
+## 🌞 Ouverture firewall
+```
+firewall-cmd --add-port=9869/tcp --add-port=22/tcp --add-port=2633/tcp --add-port=4124/tcp --add-port=4124/udp --add-port=29876/tcp --permanent && firewall-cmd --reload
+```
+
+# II. Noeuds KVM
+# A. KVM
+## 🌞 Ajouter des dépôts supplémentaires
+```
+dnf install -y epel-release
+```
+
+## 🌞 Installer KVM
+```
+dnf install opennebula-node-kvm
+```
+
+## 🌞 Démarrer le service libvirtd
+```
+systemctl start libvirtd
+systemctl enable libvirtd
+```
+# B. Système
+## 🌞 Ouverture firewall
+```
+[root@kvm1 yum.repos.d]# firewall-cmd --add-port=22/tcp --add-port=8472/udp --permanent
+success
+[root@kvm1 yum.repos.d]# firewall-cmd --reload
+```
+## 🌞 Handle SSH
+```
+[oneadmin@frontend ~]$ ssh-keyscan 10.3.1.12 >> ~/.ssh/known_hosts
+[oneadmin@frontend ~]$ cat .ssh/id_rsa.pub
+[oneadmin@kvm1 .ssh]$ vi authorized_keys
+[oneadmin@frontend ~]$ ssh oneadmin@10.3.1.11
+Last login: Fri Mar 21 12:26:06 2025 from 10.3.1.10
+```
+
+## 🌞 Setup de kvm2.one, à l'identique de kvm1.one excepté :
