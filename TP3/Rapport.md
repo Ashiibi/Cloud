@@ -152,4 +152,28 @@ success
 Last login: Fri Mar 21 12:26:06 2025 from 10.3.1.10
 ```
 
+## 🌞 Créer et configurer le bridge Linux
+```
+PS C:\Users\sacha> ssh kvm1.one
+sacha@kvm1.one's password:
+Permission denied, please try again.
+sacha@kvm1.one's password:
+PS C:\Users\sacha> ssh root@kvm1.one
+root@kvm1.one's password:
+Last login: Fri Mar 21 22:09:56 2025
+[root@kvm1 ~]# ip link add name vxlan_bridge type bridge
+[root@kvm1 ~]# ip link set dev vxlan_bridge up
+[root@kvm1 ~]# ip addr add 10.220.220.201/24 dev vxlan_bridge
+[root@kvm1 ~]# firewall-cmd --add-interface=vxlan_bridge --zone=public --permanent
+success
+[root@kvm1 ~]# firewall-cmd --add-masquerade --permanent
+fisuccess
+[root@kvm1 ~]# firewall-cmd reload
+usage: 'firewall-cmd --help' for usage information or see firewall-cmd(1) man page
+firewall-cmd: error: unrecognized arguments: reload
+[root@kvm1 ~]# firewall-cmd --reload
+success
+[root@kvm1 ~]#
+
+```
 ## 🌞 Setup de kvm2.one, à l'identique de kvm1.one excepté :
