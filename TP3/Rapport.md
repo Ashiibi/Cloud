@@ -178,7 +178,7 @@ success
 ```
 ## 🌞 Setup de kvm2.one, à l'identique de kvm1.one excepté : blabla
 
-# VM sur le deuxième noeud
+### VM sur le deuxième noeud
 ```
 [oneadmin@frontend ~]$ ssh -J kvm2.one root@10.220.220.2
 The authenticity of host '10.220.220.2 (<no hostip for proxy command>)' can't be established.
@@ -188,7 +188,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '10.220.220.2' (ED25519) to the list of known hosts.
 [root@localhost ~]# 
 ```
-# 3. Connectivité entre les VMs
+### 3. Connectivité entre les VMs
 ```
 depuis la vm sur kvm1
 [root@localhost ~]# ping 10.220.220.2
@@ -203,5 +203,8 @@ PING 10.220.220.1 (10.220.220.1) 56(84) bytes of data.
 64 bytes from 10.220.220.1: icmp_seq=2 ttl=64 time=4.73 ms
 64 bytes from 10.220.220.1: icmp_seq=3 ttl=64 time=4.17 ms
 ```
-# 4. Inspection du trafic
-(capture)[TP3/rawr.pcap]
+### 4. Inspection du trafic
+[captureRAWRRRR](TP3/rawr.pcap)
+
+# Merci pour tout Léo c'était vraiment sympa les cours avec toi ça nous a poussé vraiment et tout ! En espérant sincèrement te revoir l'an prochain si l'avenir me le permet. En attendant on se verra peut être dans un bar :p
+## Rah j'ai meme pas eu le droit au calin moi aussi 🫠 mais j'espere qu'on se reverra ! 
