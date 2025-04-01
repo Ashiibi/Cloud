@@ -177,6 +177,7 @@ success
 
 ```
 ## 🌞 Setup de kvm2.one, à l'identique de kvm1.one excepté : blabla
+
 # VM sur le deuxième noeud
 ```
 [oneadmin@frontend ~]$ ssh -J kvm2.one root@10.220.220.2
